@@ -36,7 +36,7 @@ class ActionController::Base
   def taint_request
     taint_hash(params)
     cookies.each do |k, v|
-      v.taint
+      v.taint unless k == ActionController::Base.session_options[:key]
     end
   end
 end
